@@ -1,0 +1,29 @@
+WITH mountain_info AS (   
+    SELECT 
+        y.name AS mountain, 
+        y.height AS height, 
+        r AS country_code
+    FROM 
+        geo.world x, 
+        x.mondial.mountain y, 
+        SPLIT(y.`-country`, ' ') r 
+)
+
+SELECT DISTINCT 
+    c.`-car_code` AS country_code, 
+    c.name AS country_name, 
+    mountain_data AS mountains
+FROM 
+    geo.world x, 
+    x.mondial.country c 
+LEFT OUTER JOIN mountain_info AS m ON c.`-car_code` = m.country_code
+LET mountain_data = (
+    SELECT 
+        m1.mountain, m1.height
+    FROM 
+        mountain_info AS m1
+    WHERE 
+        m.country_code = m1.country_code
+)
+ORDER BY 
+    ARRAY_COUNT(mountain_data) DESC;

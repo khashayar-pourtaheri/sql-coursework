@@ -1,0 +1,6 @@
+USE geo;
+SELECT   c.`-car_code` as country_code,  c.name as country_name, c.`-area` as area
+FROM world x,  x.mondial.country c
+LET seas =  (select s.name as sea  FROM x.mondial.sea  s, split(s.`-country`, " ") ss WHERE c.`-car_code` = ss)
+WHERE ARRAY_COUNT(seas) = 0
+ORDER BY float(c.`-area`) DESC;

@@ -1,0 +1,1 @@
+In general, cloud DBMS (Database Management Systems) are very useful for both students and my future coworkers because they facilitate teamwork. Multiple people can collaborate online and easily access their work. However, I found it a bit challenging to keep track of my progress, as I often lost my code after a few minutes of my laptop hibernating and had to start from scratch.

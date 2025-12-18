@@ -1,0 +1,23 @@
+WITH mountain_data AS (   
+    SELECT 
+        y.name AS mountain_name, 
+        y.height AS mountain_height, 
+        r AS country_code
+    FROM 
+        geo.world x, 
+        x.mondial.mountain y, 
+        SPLIT(y.`-country`, ' ') r 
+)
+SELECT 
+    m.mountain_name AS mountain, 
+    m.mountain_height AS height, 
+    m.country_code AS country_code, 
+    y.name AS country_name
+FROM 
+    mountain_data AS m, 
+    geo.world x, 
+    x.mondial.country y
+WHERE 
+    m.country_code = y.`-car_code`
+ORDER BY 
+    INT(m.mountain_height) DESC;

@@ -1,0 +1,10 @@
+SELECT  B.religion as religion, count(*) as num_countries
+FROM (SELECT  (SELECT `#text` as religion
+               FROM z ) as country
+      FROM geo.world x, x.mondial.country y
+      LET z = CASE WHEN y.religions is missing THEN []
+         WHEN is_array(y.religions) THEN 
+         y.religions ELSE [y.religions] END 
+     ) AS A UNNEST A.country AS B
+GROUP BY B.religion
+ORDER BY count(*) DESC;
